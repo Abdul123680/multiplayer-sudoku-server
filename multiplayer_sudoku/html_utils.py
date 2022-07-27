@@ -1,4 +1,4 @@
-def wrap_board_style(table):
+def wrap_board_style(table: str) -> str:
     return '''<!DOCTYPE html>
 <html lang="en">
   <head>

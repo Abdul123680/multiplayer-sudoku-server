@@ -16,7 +16,7 @@ board[3][2] = 1
 
 
 @server.route("/show-board")
-def show_board():
+def show_board() -> str:
     display = '<table id="grid">'
     for line in board:
         display += '<tr>'
@@ -34,7 +34,7 @@ def show_board():
 
 
 @server.route("/mark-board/<number>")
-def mark_board(number):
+def mark_board(number: int) -> str:
     row = request.args.get('row', type=int)
     column = request.args.get('column', type=int)
     board[row][column] = number
