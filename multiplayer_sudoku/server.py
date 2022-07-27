@@ -33,11 +33,10 @@ def show_board():
     return html_utils.wrap_board_style(display)
 
 
-@server.route("/mark-board")
-def mark_board():
+@server.route("/mark-board/<number>")
+def mark_board(number):
     row = request.args.get('row', type=int)
     column = request.args.get('column', type=int)
-    number = request.args.get('number', type=int)
     board[row][column] = number
     return 'success'
 
