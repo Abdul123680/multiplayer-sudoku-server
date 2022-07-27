@@ -1,7 +1,7 @@
-import flask
+from flask import Flask, request
 import html_utils
 
-server = flask.Flask(__name__)
+server = Flask(__name__)
 
 board = [[''] * 9,
          [''] * 9,
@@ -23,13 +23,23 @@ def show_board():
         cell_number = 0
         for number in line:
             if number != '':
-                display += '<td><input id="cell-' + str(cell_number) + '" type="text" value="' + str(number) + '" disabled></td>'
+                display += '<td><input id="cell-' + str(cell_number) + '" type="text" value="' + str(
+                    number) + '" disabled></td>'
             else:
                 display += '<td><input id="cell-' + str(cell_number) + '" type="text"></td>'
             cell_number += 1
         display += '</tr>'
     display += '</table>'
     return html_utils.wrap_board_style(display)
+
+
+@server.route("/mark-board")
+def mark_board():
+    row = request.args.get('row', type=int)
+    column = request.args.get('column', type=int)
+    number = request.args.get('number', type=int)
+    board[row][column] = number
+    return 'success'
 
 
 if __name__ == '__main__':
