@@ -33,6 +33,7 @@ def show_board() -> str:
     return html_utils.wrap_board_style(display)
 
 
+# todo convert to post request
 @server.route("/mark-board/<number>")
 def mark_board(number: int) -> str:
     row = request.args.get('row', type=int)
