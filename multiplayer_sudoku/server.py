@@ -36,6 +36,7 @@ def show_board() -> str:
 # todo convert to post request
 @server.route("/mark-board/<number>")
 def mark_board(number: int) -> str:
+    test = 0
     row = request.args.get('row', type=int)
     column = request.args.get('column', type=int)
     board[row][column] = number
